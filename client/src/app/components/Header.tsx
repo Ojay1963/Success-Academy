@@ -1,10 +1,27 @@
-import { Menu, Phone, X } from "lucide-react";
+import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import { useState } from "react";
-import { NavLink } from "react-router";
-import { contactDetails, navItems, schoolName } from "../content/site";
+import { NavLink, useLocation } from "react-router";
+import { contactDetails, schoolName } from "../content/site";
+
+const schoolLinks = [
+  { path: "/nursery", label: "Nursery" },
+  { path: "/primary", label: "Primary" },
+  { path: "/secondary", label: "Secondary" },
+];
+
+const headerLinks = [
+  { path: "/", label: "Home" },
+  { path: "/admissions", label: "Admissions" },
+  { path: "/academics", label: "Academics" },
+  { path: "/about", label: "About Us" },
+  { path: "/gallery", label: "Gallery" },
+  { path: "/news", label: "News/Events" },
+];
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const isSchoolActive = schoolLinks.some((item) => item.path === location.pathname);
 
   return (
     <header className="sticky top-0 z-50 border-b border-[var(--brand-border)] bg-[rgba(248,250,252,0.92)] backdrop-blur-xl">
@@ -20,11 +37,57 @@ export default function Header() {
         </NavLink>
 
         <nav className="hidden min-w-0 flex-1 items-center justify-center gap-1 xl:flex">
-          {navItems.slice(0, 8).map((item) => (
+          {headerLinks.slice(0, 3).map((item) => (
             <NavLink
               key={item.path}
               to={item.path}
               end={item.path === "/"}
+              className={({ isActive }) =>
+                `whitespace-nowrap rounded-full px-3 py-2.5 text-sm font-medium transition 2xl:px-4 ${
+                  isActive
+                    ? "bg-[var(--brand-surface-strong)] text-[var(--brand-ink)]"
+                    : "text-[var(--brand-muted)] hover:bg-white hover:text-[var(--brand-ink)]"
+                }`
+              }
+            >
+              {item.label}
+            </NavLink>
+          ))}
+          <div className="group relative">
+            <button
+              type="button"
+              className={`inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2.5 text-sm font-medium transition hover:bg-white hover:text-[var(--brand-ink)] 2xl:px-4 ${
+                isSchoolActive
+                  ? "bg-[var(--brand-surface-strong)] text-[var(--brand-ink)]"
+                  : "text-[var(--brand-muted)]"
+              }`}
+              aria-haspopup="true"
+            >
+              Schools
+              <ChevronDown className="h-4 w-4 transition group-hover:rotate-180 group-focus-within:rotate-180" />
+            </button>
+            <div className="invisible absolute left-1/2 top-full z-50 mt-2 w-56 -translate-x-1/2 rounded-[1.25rem] border border-[var(--brand-border)] bg-white p-2 opacity-0 shadow-[0_20px_50px_rgba(9,31,43,0.14)] transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+              {schoolLinks.map((item) => (
+                <NavLink
+                  key={item.path}
+                  to={item.path}
+                  className={({ isActive }) =>
+                    `block rounded-[1rem] px-4 py-3 text-sm font-medium transition ${
+                      isActive
+                        ? "bg-[var(--brand-surface-strong)] text-[var(--brand-ink)]"
+                        : "text-[var(--brand-muted)] hover:bg-[var(--brand-surface)] hover:text-[var(--brand-ink)]"
+                    }`
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              ))}
+            </div>
+          </div>
+          {headerLinks.slice(3).map((item) => (
+            <NavLink
+              key={item.path}
+              to={item.path}
               className={({ isActive }) =>
                 `whitespace-nowrap rounded-full px-3 py-2.5 text-sm font-medium transition 2xl:px-4 ${
                   isActive
@@ -68,11 +131,48 @@ export default function Header() {
       {isMenuOpen && (
         <div id="mobile-menu" className="border-t border-[var(--brand-border)] bg-[var(--brand-surface)] xl:hidden">
           <nav className="mx-auto grid max-w-7xl gap-2 px-4 py-4 sm:px-6">
-            {navItems.map((item) => (
+            {headerLinks.slice(0, 3).map((item) => (
               <NavLink
                 key={item.path}
                 to={item.path}
                 end={item.path === "/"}
+                className={({ isActive }) =>
+                  `rounded-2xl px-4 py-3 text-sm font-medium transition ${
+                    isActive
+                      ? "bg-[var(--brand-surface-strong)] text-[var(--brand-ink)]"
+                      : "bg-white text-[var(--brand-muted)]"
+                  }`
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+            <div className="rounded-2xl bg-white p-2">
+              <p className="px-3 pb-2 pt-1 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--brand-accent)]">
+                Schools
+              </p>
+              <div className="grid gap-2 sm:grid-cols-3">
+                {schoolLinks.map((item) => (
+                  <NavLink
+                    key={item.path}
+                    to={item.path}
+                    className={({ isActive }) =>
+                      `rounded-xl px-4 py-3 text-sm font-medium transition ${
+                        isActive
+                          ? "bg-[var(--brand-surface-strong)] text-[var(--brand-ink)]"
+                          : "bg-[var(--brand-surface)] text-[var(--brand-muted)]"
+                      }`
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                ))}
+              </div>
+            </div>
+            {headerLinks.slice(3).map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
                 className={({ isActive }) =>
                   `rounded-2xl px-4 py-3 text-sm font-medium transition ${
                     isActive
