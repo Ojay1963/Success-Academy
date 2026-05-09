@@ -1,0 +1,99 @@
+@layer base {
+  :root {
+    --brand-ink: #091f2b;
+    --brand-accent: #2b6c93;
+    --brand-gold: #d3aa3f;
+    --brand-gold-soft: #f3df99;
+    --brand-surface: #f5f2ea;
+    --brand-surface-strong: #e7eff5;
+    --brand-border: rgba(9, 31, 43, 0.1);
+    --brand-muted: #5c6c76;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
+    font-family: var(--font-body);
+    background:
+      radial-gradient(circle at top, rgba(211, 170, 63, 0.12), transparent 26%),
+      linear-gradient(180deg, #ffffff 0%, #f7f6f1 36%, #edf3f7 100%);
+    color: var(--brand-ink);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+  }
+
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  ::selection {
+    background: rgba(211, 170, 63, 0.28);
+    color: var(--brand-ink);
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .active\:scale-98:active {
+    transform: scale(0.98);
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.7s ease-out both;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

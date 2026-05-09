@@ -1,0 +1,6 @@
+@layer base {
+  :root {
+    --font-heading: "Cambria", "Georgia", "Times New Roman", serif;
+    --font-body: "Segoe UI Variable", "Aptos", "Trebuchet MS", "Segoe UI", sans-serif;
+  }
+}
