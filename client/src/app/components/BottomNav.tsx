@@ -12,8 +12,8 @@ const navIcons = {
 
 export default function BottomNav() {
   return (
-    <nav className="mobile-bottom-nav fixed bottom-3 left-1/2 z-50 w-[calc(100%-1.25rem)] -translate-x-1/2 md:hidden">
-      <div className="mx-auto grid max-w-[30rem] grid-cols-5 rounded-[1.6rem] border border-white/70 bg-[rgba(255,255,255,0.95)] p-2 shadow-[0_24px_70px_rgba(9,31,43,0.2)] backdrop-blur-xl">
+    <nav className="mobile-bottom-nav fixed bottom-0 left-0 z-50 w-full md:hidden">
+      <div className="mx-auto grid max-w-[30rem] grid-cols-5 rounded-t-[1.6rem] border border-b-0 border-white/70 bg-[rgba(255,255,255,0.95)] p-2 shadow-[0_24px_70px_rgba(9,31,43,0.2)] backdrop-blur-xl">
         {bottomNavItems.map((item) => {
           const Icon = navIcons[item.path as keyof typeof navIcons];
 

@@ -259,8 +259,8 @@ export function PortalRoleLayout({ role }: { role: PortalRole }) {
         </div>
       </div>
 
-      <nav className="fixed bottom-3 left-1/2 z-50 w-[calc(100%-1.25rem)] -translate-x-1/2 md:hidden">
-        <div className="mx-auto grid max-w-[32rem] grid-cols-4 rounded-[1.6rem] border border-white/70 bg-[rgba(255,255,255,0.96)] p-2 shadow-[0_22px_70px_rgba(9,31,43,0.18)] backdrop-blur-xl">
+      <nav className="fixed bottom-0 left-0 z-50 w-full md:hidden">
+        <div className="mx-auto grid max-w-[32rem] grid-cols-4 rounded-t-[1.6rem] border border-b-0 border-white/70 bg-[rgba(255,255,255,0.96)] p-2 shadow-[0_22px_70px_rgba(9,31,43,0.18)] backdrop-blur-xl">
           {navItems.slice(0, 4).map((item) => {
             const Icon = item.icon;
             return (
