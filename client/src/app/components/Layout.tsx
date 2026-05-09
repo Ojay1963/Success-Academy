@@ -7,6 +7,7 @@ import Header from "./Header";
 
 export default function Layout() {
   const location = useLocation();
+  const showFab = location.pathname !== "/";
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
@@ -22,7 +23,7 @@ export default function Layout() {
       </main>
       <Footer />
       <BottomNav />
-      <FAB />
+      {showFab ? <FAB /> : null}
     </div>
   );
 }
