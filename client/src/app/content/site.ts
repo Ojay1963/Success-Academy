@@ -56,14 +56,14 @@ export const campusImages = {
 
 export const navItems = [
   { path: "/", label: "Home" },
-  { path: "/about", label: "About Us" },
+  { path: "/admissions", label: "Admissions" },
+  { path: "/academics", label: "Academics" },
   { path: "/nursery", label: "Nursery" },
   { path: "/primary", label: "Primary" },
   { path: "/secondary", label: "Secondary" },
-  { path: "/admissions", label: "Admissions" },
-  { path: "/academics", label: "Academics" },
-  { path: "/gallery", label: "Gallery" },
+  { path: "/about", label: "About Us" },
   { path: "/news", label: "News/Events" },
+  { path: "/gallery", label: "Gallery" },
   { path: "/contact", label: "Contact" },
 ];
 
